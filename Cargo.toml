@@ -1,0 +1,34 @@
+[package]
+name = "rust-multi_threaded-ssl-scan"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = "2"
+log = "0.4"
+env_logger = "0.10.0"
+url = "2.2"
+
+[dependencies.reqwest]
+version = "0.11"
+
+[dependencies.timeout-readwrite]
+version = "0.3.3"
+
+[[bin]]
+name = "rust-ssl-scan"
+path = "src/main.rs"
+
+# Target configuration for 64-bit Windows
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "link-arg=-Wl,--export-all"]
+
+# Target configuration for 64-bit Linux
+[target.x86_64-unknown-linux-gnu]
+rustflags = ["-C", "link-arg=-Wl,--export-all"]
+
+# Target configuration for 64-bit macOS
+[target.x86_64-apple-darwin]
+rustflags = ["-C", "link-arg=-Wl,--export-all"]
